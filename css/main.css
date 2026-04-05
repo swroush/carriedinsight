@@ -33,8 +33,8 @@
   --font-mono:    'DM Mono', monospace;
 
   /* Type scale */
-  --text-micro:   0.62rem;   /* mono labels */
-  --text-sm:      0.88rem;   /* body small, cards */
+  --text-micro:   0.72rem;   /* mono labels */
+  --text-sm:      0.92rem;   /* body small, cards */
   --text-base:    1rem;      /* body */
   --text-card:    1.5rem;    /* card headings */
   --text-section: clamp(2rem, 3.5vw, 3.8rem);   /* section h2 */
