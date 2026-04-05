@@ -98,9 +98,29 @@ body {
 .section-header h2 {
   font-family: var(--font-display);
   font-size: var(--text-section);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text);
   line-height: 1.08;
+  letter-spacing: var(--ls-display);
+}
+
+.archetype-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-card);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: var(--ls-display);
+}
+
+.recognition-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-card);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.45;
+  border-left: 1px solid var(--bronze);
+  padding-left: 32px;
   letter-spacing: var(--ls-display);
 }
 
@@ -233,7 +253,7 @@ nav.scrolled {
 .hero-headline {
   font-family: var(--font-display);
   font-size: var(--text-hero);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.04;
   letter-spacing: var(--ls-display);
   color: var(--text);
