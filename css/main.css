@@ -148,8 +148,7 @@ nav.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 48px 80px 16px;
-  overflow: visible;
+  padding: 100px 56px 80px 16px;
 }
 
 .hero-right::before {
@@ -168,20 +167,17 @@ nav.scrolled {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 72vh;
-  box-shadow: 0 8px 40px rgba(13,11,9,0.1);
-  filter: saturate(0.96) brightness(1.04) contrast(0.97);
+  max-height: 76vh;
+  box-shadow: 0 12px 56px rgba(13,11,9,0.12);
+  filter: brightness(1.02) contrast(0.98);
 }
 
 @media (max-width: 960px) {
   #hero { grid-template-columns: 1fr; }
   .hero-left { padding: 128px 24px 48px; max-width: 100%; }
-  .hero-right {
-    height: auto;
-    padding: 32px 24px 48px;
-  }
+  .hero-right { height: auto; padding: 32px 24px 48px; }
   .hero-right::before { display: none; }
-  .hero-right img { max-height: 50vh; }
+  .hero-right img { max-height: 55vw; }
 }
 
 .hero-tag {
