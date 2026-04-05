@@ -575,7 +575,7 @@ nav.scrolled {
   font-size: var(--text-micro);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
-  color: rgba(242,237,228,0.3);
+  color: rgba(242,237,228,0.65);
   margin-top: 28px;
 }
 
@@ -612,7 +612,7 @@ nav.scrolled {
 .form-group select { cursor: pointer; background: var(--bg-dark); }
 .form-group select option { background: #1a1714; color: var(--bg); }
 .form-group input::placeholder,
-.form-group textarea::placeholder { color: rgba(242,237,228,0.2); }
+.form-group textarea::placeholder { color: rgba(242,237,228,0.55); }
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus { border-color: var(--bronze); }
@@ -620,7 +620,7 @@ nav.scrolled {
 
 .field-note {
   font-size: var(--text-micro);
-  color: rgba(242,237,228,0.2);
+  color: rgba(242,237,228,0.55);
   font-family: var(--font-mono);
   text-transform: none;
   letter-spacing: 0.05em;
@@ -629,7 +629,7 @@ nav.scrolled {
 .char-hint {
   font-family: var(--font-mono);
   font-size: var(--text-micro);
-  color: rgba(242,237,228,0.25);
+  color: rgba(242,237,228,0.6);
   min-height: 1em;
   display: block;
   margin-top: 4px;
@@ -649,7 +649,7 @@ nav.scrolled {
 
 .form-privacy {
   font-size: var(--text-micro);
-  color: rgba(242,237,228,0.22);
+  color: rgba(242,237,228,0.6);
   line-height: 1.6;
   max-width: 160px;
   text-align: right;
@@ -714,7 +714,7 @@ footer {
   font-size: var(--text-micro);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
-  color: rgba(242,237,228,0.25);
+  color: rgba(242,237,228,0.6);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -725,7 +725,7 @@ footer {
   font-family: var(--font-mono);
   font-size: var(--text-micro);
   letter-spacing: 0.1em;
-  color: rgba(242,237,228,0.2);
+  color: rgba(242,237,228,0.55);
 }
 
 @media (max-width: 600px) { .footer-links { display: none; } }
