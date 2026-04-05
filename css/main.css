@@ -166,20 +166,15 @@ nav.scrolled {
 .hero-right {
   height: 100vh;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0 24px 0 0;
-  background: var(--bg);
-  overflow: visible;
+  overflow: hidden;
 }
 
 .hero-right img {
   display: block;
-  width: auto;
-  height: auto;
-  max-width: 110%;
-  max-height: 62vh;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hero-tag {
