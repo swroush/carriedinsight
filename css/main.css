@@ -321,6 +321,12 @@ nav.scrolled {
 
 .recognition-list { list-style: none; }
 
+.recognition-full {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 96px;
+}
+
 .recognition-list li {
   font-size: var(--text-sm);
   font-weight: 300;
