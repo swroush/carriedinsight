@@ -145,26 +145,41 @@ nav.scrolled {
 .hero-right {
   height: 100vh;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 48px 80px 24px;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 64px 32px 64px 0;
+  border: 1px solid var(--border-bronze);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-right img {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 5%;
+  max-height: 78vh;
+  object-fit: contain;
+  object-position: center top;
   display: block;
-  filter: saturate(0.96) brightness(1.03) contrast(0.98);
+  filter: saturate(0.96) brightness(1.04) contrast(0.97);
+  box-shadow: 0 8px 48px rgba(13,11,9,0.1);
 }
 
 .hero-right::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right, var(--bg) 0%, rgba(242,237,228,0.3) 30%, transparent 55%),
-    linear-gradient(to top, var(--bg) 0%, transparent 12%);
+  bottom: 64px; left: 0; right: 32px;
+  height: 30%;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
   pointer-events: none;
+  z-index: 2;
 }
 
 .hero-tag {
