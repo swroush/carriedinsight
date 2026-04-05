@@ -150,7 +150,7 @@ nav.scrolled {
 #hero {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 3fr 1.2fr;
   align-items: stretch;
   background: var(--bg);
 }
