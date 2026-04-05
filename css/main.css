@@ -306,13 +306,6 @@ nav.scrolled {
 
 .btn-ghost:hover { color: var(--text); border-color: var(--text); }
 
-@media (max-width: 960px) {
-  #hero { grid-template-columns: 1fr; }
-  .hero-left { padding: 100px 24px 48px; max-width: 100%; }
-  .hero-right { display: none; }
-  .hero-mobile-id { display: flex; }
-}
-
 .hero-mobile-id {
   display: none;
   align-items: center;
@@ -352,6 +345,13 @@ nav.scrolled {
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
   color: var(--slate-light);
+}
+
+@media (max-width: 960px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 100px 24px 48px; max-width: 100%; }
+  .hero-right { display: none; }
+  .hero-mobile-id { display: flex; }
 }
 
 /* ================================================================
