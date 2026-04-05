@@ -11,6 +11,8 @@
   <meta property="og:url" content="https://carriedinsight.com">
   <title>Carried Insight | Sharon Roush</title>
   <link rel="stylesheet" href="css/main.css">
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23090909'/><text y='24' x='4' font-size='22' fill='%23C9A864' font-family='Georgia'>C</text></svg>">
 </head>
 <body>
@@ -200,11 +202,32 @@
           <p class="reveal">If any of this resonates, I'd welcome a conversation. No pressure, no sales process — just an honest exchange about whether this kind of work makes sense for where you are right now.</p>
           <p class="reveal" style="color:var(--slate-dim);font-size:0.85rem;">Confidential. I respond to every inquiry personally.</p>
           <div class="contact-note reveal">Responses within 48 hours</div>
-          <a href="mailto:sharon@carriedinsight.com" class="contact-email reveal">sharon@carriedinsight.com</a>
+          <a id="contact-email-link" href="#" class="contact-email reveal" aria-label="Email Sharon Roush"></a>
         </div>
 
         <div class="contact-right">
-          <form id="inquiryForm" action="https://formspree.io/f/sharon@carriedinsight.com" method="POST" class="contact-form" novalidate>
+          <!--
+            SETUP REQUIRED:
+            1. Sign up at formspree.io → create form → copy your endpoint ID
+            2. Replace YOUR_FORMSPREE_ID below with e.g. xpzvgkja
+            3. Sign up at cloudflare.com → Turnstile → create site → copy site key
+            4. Replace YOUR_TURNSTILE_SITE_KEY below
+          -->
+          <form id="inquiryForm"
+                action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+                method="POST"
+                class="contact-form"
+                novalidate>
+
+            <!-- Honeypot — hidden from humans, bots fill it and get silently dropped -->
+            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+              <label for="_hp_website">Leave this blank</label>
+              <input type="text" id="_hp_website" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Formspree redirect suppression -->
+            <input type="hidden" name="_next" value="false">
+            <input type="hidden" name="_subject" value="New inquiry — Carried Insight">
 
             <div class="form-row">
               <div class="form-group">
@@ -224,7 +247,7 @@
 
             <div class="form-group">
               <label for="role">Current Role</label>
-              <select id="role" name="role">
+              <select id="role" name="role" required>
                 <option value="" disabled selected>Select your role</option>
                 <option>Emerging Manager / Founder</option>
                 <option>Managing Director / Partner</option>
@@ -235,13 +258,22 @@
               </select>
             </div>
 
+            <!-- Friction: requires real context, minimum 40 chars -->
             <div class="form-group">
-              <label for="context">What's on your mind?</label>
-              <textarea id="context" name="context" placeholder="A brief description of where you are and what you're navigating. No need to have it figured out." rows="4"></textarea>
+              <label for="context">What's bringing you here? <span class="field-note">(Please share a few sentences)</span></label>
+              <textarea id="context" name="context" placeholder="A brief description of where you are and what you're navigating. No need to have it figured out." rows="5" required minlength="40"></textarea>
+              <span class="char-hint" id="char-hint"></span>
+            </div>
+
+            <!-- Cloudflare Turnstile widget -->
+            <div class="cf-turnstile"
+                 data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+                 data-theme="light"
+                 data-size="normal">
             </div>
 
             <div class="form-submit">
-              <button type="submit" class="btn-primary">Send Inquiry</button>
+              <button type="submit" class="btn-primary" id="submitBtn">Send Inquiry</button>
               <p class="form-privacy">Confidential. I respond to every note personally.</p>
             </div>
 

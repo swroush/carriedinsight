@@ -4,13 +4,22 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- Email obfuscation — never in source HTML ----
+  const emailLink = document.getElementById('contact-email-link');
+  if (emailLink) {
+    const p1 = 'sharon';
+    const p2 = 'carriedinsight';
+    const p3 = 'com';
+    const addr = `${p1}@${p2}.${p3}`;
+    emailLink.href = `mailto:${addr}`;
+    emailLink.textContent = addr;
+  }
+
   // ---- Nav scroll behavior ----
   const nav = document.querySelector('nav');
-  const handleScroll = () => {
+  window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
-  };
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  }, { passive: true });
 
   // ---- Mobile menu ----
   const hamburger = document.querySelector('.hamburger');
@@ -30,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileClose?.addEventListener('click', closeMobile);
   mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
 
-  // ---- Intersection Observer for reveal animations ----
-  const reveals = document.querySelectorAll('.reveal');
-
+  // ---- Reveal on scroll ----
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -40,52 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-  });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ---- Hero stagger on load ----
-  const heroEls = document.querySelectorAll('.hero-stagger');
-  heroEls.forEach((el, i) => {
+  // ---- Hero stagger ----
+  document.querySelectorAll('.hero-stagger').forEach((el, i) => {
     setTimeout(() => {
       el.style.opacity = '1';
       el.style.transform = 'translateY(0)';
     }, 200 + i * 140);
   });
-
-  // ---- Stats counter animation ----
-  const stats = document.querySelectorAll('.stat-num[data-target]');
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  stats.forEach(s => statsObserver.observe(s));
-
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target, 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1400;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(eased * target);
-      el.textContent = current + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-
-    requestAnimationFrame(tick);
-  }
 
   // ---- Smooth anchor scroll ----
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -95,66 +67,82 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
     });
   });
 
-  // ---- Contact form ----
+  // ---- Character counter / friction on context field ----
+  const contextField = document.getElementById('context');
+  const charHint = document.getElementById('char-hint');
+  const MIN_CHARS = 40;
+
+  if (contextField && charHint) {
+    const update = () => {
+      const len = contextField.value.trim().length;
+      if (len === 0) {
+        charHint.textContent = '';
+      } else if (len < MIN_CHARS) {
+        charHint.textContent = `${MIN_CHARS - len} more characters`;
+        charHint.style.color = 'var(--slate-light)';
+      } else {
+        charHint.textContent = '✓';
+        charHint.style.color = 'var(--bronze)';
+      }
+    };
+    contextField.addEventListener('input', update);
+  }
+
+  // ---- Form submission ----
   const form = document.getElementById('inquiryForm');
   const formSuccess = document.querySelector('.form-success');
+  const submitBtn = document.getElementById('submitBtn');
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('.btn-primary');
-    const originalText = btn.textContent;
 
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
+    // Honeypot check
+    const honeypot = form.querySelector('input[name="_gotcha"]');
+    if (honeypot?.value) return; // bot — silently drop
 
-    // Simulate submission (replace with real endpoint)
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    // Friction: minimum context length
+    const context = document.getElementById('context');
+    if (context && context.value.trim().length < MIN_CHARS) {
+      context.focus();
+      charHint.textContent = `Please add a bit more — ${MIN_CHARS - context.value.trim().length} more characters`;
+      charHint.style.color = 'var(--bronze)';
+      return;
+    }
 
-    form.style.display = 'none';
-    formSuccess.classList.add('visible');
+    // Basic required field check
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      if (!field.value.trim()) { field.focus(); valid = false; }
+    });
+    if (!valid) return;
+
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        formSuccess.classList.add('visible');
+      } else {
+        submitBtn.textContent = 'Send Inquiry';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Please email sharon@carriedinsight.com directly.');
+      }
+    } catch {
+      submitBtn.textContent = 'Send Inquiry';
+      submitBtn.disabled = false;
+    }
   });
-
-  // ---- Cursor dot (desktop only) ----
-  if (window.matchMedia('(pointer: fine)').matches) {
-    const cursor = document.createElement('div');
-    cursor.style.cssText = `
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: rgba(201, 168, 100, 0.7);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.08s ease, width 0.2s, height 0.2s, opacity 0.3s;
-      mix-blend-mode: difference;
-    `;
-    document.body.appendChild(cursor);
-
-    let cx = 0, cy = 0;
-    document.addEventListener('mousemove', e => {
-      cx = e.clientX; cy = e.clientY;
-      cursor.style.left = cx + 'px';
-      cursor.style.top = cy + 'px';
-    });
-
-    document.querySelectorAll('a, button, .practice-card, .archetype-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.width = '24px';
-        cursor.style.height = '24px';
-        cursor.style.opacity = '0.4';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.width = '6px';
-        cursor.style.height = '6px';
-        cursor.style.opacity = '1';
-      });
-    });
-  }
 
 });
