@@ -715,6 +715,13 @@ nav.scrolled {
   margin-bottom: 12px;
 }
 
+.form-success p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--slate);
+}
+
 @media (max-width: 900px) {
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
   .form-row { grid-template-columns: 1fr; }
