@@ -89,6 +89,27 @@ nav.scrolled {
 
 .nav-logo span { color: var(--bronze); }
 
+.nav-descriptor {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate-light);
+  font-style: normal;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.recognition-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.45;
+  border-left: 1px solid var(--bronze);
+  padding-left: 32px;
+}
+
 .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
 
 .nav-links a {
