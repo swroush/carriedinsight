@@ -357,43 +357,50 @@ nav.scrolled {
    ================================================================ */
 #clients { padding: var(--section-pad) 0; }
 
-.archetype-stack { display: flex; flex-direction: column; }
-
-.archetype-row {
+.archetype-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 64px;
-  padding: 48px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
 }
 
-.archetype-row:first-child { border-top: 1px solid var(--border); }
-
-.archetype-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
-  color: var(--bronze);
-  padding-top: 6px;
+.archetype-card {
+  background: var(--bg);
+  padding: 56px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  transition: background 0.3s;
+  overflow: hidden;
 }
 
-.archetype-content h3 {
+.archetype-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--bronze);
+  transition: width 0.5s ease;
+}
+
+.archetype-card:hover { background: var(--bg-alt); }
+.archetype-card:hover::after { width: 100%; }
+
+.archetype-card h3 {
   font-family: var(--font-display);
   font-size: var(--text-card);
   font-weight: 400;
   color: var(--text);
   line-height: 1.2;
   letter-spacing: var(--ls-display);
-  margin-bottom: 12px;
 }
 
-.archetype-content p {
+.archetype-card p {
   font-size: var(--text-sm);
   color: var(--slate);
   line-height: 1.85;
-  max-width: 600px;
 }
 
 .engagement-note {
@@ -402,13 +409,13 @@ nav.scrolled {
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
   color: var(--bronze);
-  margin-top: 16px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
   display: block;
 }
 
-@media (max-width: 960px) {
-  .archetype-row { grid-template-columns: 1fr; gap: 16px; }
-}
+@media (max-width: 960px) { .archetype-grid { grid-template-columns: 1fr; } }
 
 /* ================================================================
    ABOUT
