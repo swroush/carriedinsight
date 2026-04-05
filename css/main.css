@@ -561,6 +561,40 @@ nav.scrolled {
   flex-shrink: 0;
 }
 
+.contact-format {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.format-item {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(242,237,228,0.08);
+}
+
+.format-item:first-child { border-top: 1px solid rgba(242,237,228,0.08); }
+
+.format-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.format-value {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(242,237,228,0.6);
+  line-height: 1.5;
+}
+
 /* Form on dark bg */
 .contact-form { display: flex; flex-direction: column; gap: 28px; }
 
