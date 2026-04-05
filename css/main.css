@@ -352,6 +352,7 @@ nav.scrolled {
   .hero-left { padding: 100px 24px 48px; max-width: 100%; }
   .hero-right { display: none; }
   .hero-mobile-id { display: flex; }
+  .hero-tag { display: none; }
 }
 
 /* ================================================================
