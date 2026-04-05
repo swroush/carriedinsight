@@ -33,7 +33,7 @@
   --font-mono:    'DM Mono', monospace;
 
   /* Type scale */
-  --text-micro:   0.72rem;   /* mono labels */
+  --text-micro:   0.78rem;   /* mono labels */
   --text-sm:      0.92rem;   /* body small, cards */
   --text-base:    1rem;      /* body */
   --text-card:    1.5rem;    /* card headings */
@@ -539,16 +539,15 @@ nav.scrolled {
 .how-step-title {
   font-size: var(--text-sm);
   font-weight: 400;
-  color: rgba(242,237,228,0.8);
+  color: rgba(242,237,228,0.9);
   margin-bottom: 4px;
 }
 
 .how-step-body {
-  font-size: var(--text-micro);
+  font-size: var(--text-sm);
   font-weight: 300;
-  color: rgba(242,237,228,0.4);
+  color: rgba(242,237,228,0.6);
   line-height: 1.65;
-  letter-spacing: 0.02em;
 }
 
 .contact-location {
@@ -570,7 +569,7 @@ nav.scrolled {
   font-size: var(--text-micro);
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
-  color: rgba(242,237,228,0.3);
+  color: rgba(242,237,228,0.55);
 }
 
 .form-group input,
@@ -578,12 +577,12 @@ nav.scrolled {
 .form-group textarea {
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(242,237,228,0.12);
+  border-bottom: 1px solid rgba(242,237,228,0.2);
   padding: 12px 0;
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 300;
-  color: var(--bg);
+  color: rgba(242,237,228,0.9);
   outline: none;
   transition: border-color 0.25s;
   width: 100%;
