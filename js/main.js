@@ -4,17 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ---- Email obfuscation — never in source HTML ----
-  const emailLink = document.getElementById('contact-email-link');
-  if (emailLink) {
-    const p1 = 'sharon';
-    const p2 = 'carriedinsight';
-    const p3 = 'com';
-    const addr = `${p1}@${p2}.${p3}`;
-    emailLink.href = `mailto:${addr}`;
-    emailLink.textContent = addr;
-  }
-
   // ---- Nav scroll behavior ----
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
@@ -137,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         submitBtn.textContent = 'Send Inquiry';
         submitBtn.disabled = false;
-        alert('Something went wrong. Please email sharon@carriedinsight.com directly.');
+        alert('Something went wrong. Please try again shortly.');
       }
     } catch {
       submitBtn.textContent = 'Send Inquiry';
