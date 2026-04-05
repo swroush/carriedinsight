@@ -23,8 +23,8 @@
   --text-mid:     #2A2622;
   --slate:        #6B6560;
   --slate-light:  #9C9590;
-  --bronze:       #8B6B4A;
-  --bronze-dim:   rgba(139, 107, 74, 0.22);
+  --bronze:       #7A5A38;
+  --bronze-dim:   rgba(122, 90, 56, 0.22);
   --border:       rgba(13, 11, 9, 0.09);
   --border-bronze:rgba(139, 107, 74, 0.2);
 
@@ -33,7 +33,7 @@
   --font-mono:    'DM Mono', monospace;
 
   /* Type scale */
-  --text-micro:   0.78rem;   /* mono labels */
+  --text-micro:   0.875rem;  /* mono labels — 14px */
   --text-sm:      0.92rem;   /* body small, cards */
   --text-base:    1rem;      /* body */
   --text-card:    1.5rem;    /* card headings */
