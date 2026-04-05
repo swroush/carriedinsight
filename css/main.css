@@ -167,20 +167,18 @@ nav.scrolled {
   height: 100vh;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 100px 56px 80px 16px;
+  padding: 0 56px 0 16px;
   background: var(--bg);
 }
 
 .hero-right img {
-  position: relative;
-  z-index: 1;
   display: block;
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 76vh;
+  max-height: 60vh;
 }
 
 .hero-tag {
