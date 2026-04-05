@@ -561,7 +561,14 @@ nav.scrolled {
   flex-shrink: 0;
 }
 
-.how-we-work {
+.contact-location {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242,237,228,0.3);
+  margin-top: 28px;
+}
   margin-top: 40px;
   margin-bottom: 8px;
 }
