@@ -148,13 +148,14 @@ nav.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 48px 80px 24px;
+  padding: 100px 48px 80px 16px;
+  overflow: visible;
 }
 
 .hero-right::before {
   content: '';
   position: absolute;
-  inset: 64px 32px 64px 0;
+  inset: 72px 24px 72px 0;
   border: 1px solid var(--border-bronze);
   pointer-events: none;
   z-index: 0;
@@ -163,23 +164,24 @@ nav.scrolled {
 .hero-right img {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-height: 78vh;
-  object-fit: contain;
-  object-position: center top;
   display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 72vh;
+  box-shadow: 0 8px 40px rgba(13,11,9,0.1);
   filter: saturate(0.96) brightness(1.04) contrast(0.97);
-  box-shadow: 0 8px 48px rgba(13,11,9,0.1);
 }
 
-.hero-right::after {
-  content: '';
-  position: absolute;
-  bottom: 64px; left: 0; right: 32px;
-  height: 30%;
-  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 2;
+@media (max-width: 960px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 128px 24px 48px; max-width: 100%; }
+  .hero-right {
+    height: auto;
+    padding: 32px 24px 48px;
+  }
+  .hero-right::before { display: none; }
+  .hero-right img { max-height: 50vh; }
 }
 
 .hero-tag {
